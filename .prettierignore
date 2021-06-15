@@ -1,0 +1,7 @@
+# JavaScript
+*.js
+
+# Next.js 関係
+.next
+node_modules
+public
