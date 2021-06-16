@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 const Button = ({ text, handleClick, type = 'normal' }) => (
   <button
-    className={cn({
+    className={cn(styles.base, {
       [styles.normal]: type === 'normal',
       [styles.outline]: type === 'outline'
     })}
