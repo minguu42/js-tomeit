@@ -16,8 +16,15 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+}
+
 :root {
   --primary-color: #192f60;
-  --on-primary-color: #ffffff;
+  --on-primary-high-emphasis-color: #ffffff;
+  --on-primary-medium-emphasis-color: rgba(256, 256, 256, 0.74);
+  --on-surface-high-emphasis-color: rgba(0, 0, 0, 0.87);
   --border-color: #afafaf;
 }
