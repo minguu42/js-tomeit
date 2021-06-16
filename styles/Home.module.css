@@ -1,0 +1,16 @@
+.welcomeLayout {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 32px;
+}
+.welcomeHeadline {
+  font-size: 58px;
+  letter-spacing: -0.5px;
+  font-weight: 300;
+}
+.welcomeDescription {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+
+  margin-top: 16px;
+}
