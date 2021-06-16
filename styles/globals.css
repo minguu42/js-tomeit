@@ -16,6 +16,11 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+}
+
 :root {
   --primary-color: #192f60;
   --on-primary-high-emphasis-color: #ffffff;
