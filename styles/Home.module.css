@@ -20,7 +20,9 @@
   letter-spacing: 0.5px;
 }
 
-.buttons {
-  display: flex;
-  gap: 16px;
+.errorMessage {
+  border: 1px solid #b00020;
+  border-radius: 4px;
+  color: #b00020;
+  padding: 8px;
 }
