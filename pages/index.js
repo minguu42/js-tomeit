@@ -9,13 +9,14 @@ import Button from 'components/Buttons'
 const Home = () => {
   const { login } = useAuth()
   const [error, setError] = useState('')
+  const [logoutError, setLogoutError] = useState('')
 
   const handleClick = async () => {
+    setError('')
     try {
-      setError('')
       await login()
     } catch {
-      setError('Failed to login')
+      setError('ログインに失敗しました。もう一度お試しください。')
     }
   }
 
@@ -24,9 +25,10 @@ const Home = () => {
       <Head>
         <title>tomeit</title>
       </Head>
-      <Header />
+      <Header setLogoutError={setLogoutError} />
       <main className={styles.layout}>
-        {error && <p className={styles.errorMessage}>ログインに失敗しました. もう一度お試しください.</p>}
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        {logoutError && <p className={styles.errorMessage}>{logoutError}</p>}
         <div>
           <h2 className={styles.headline}>やるべきことをやる</h2>
           <p className={styles.description}>tomeit は「今やるべきことだけを考え、行う」<br />をコンセプトにしたタスク管理アプリです。</p>

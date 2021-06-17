@@ -1,16 +1,28 @@
-.header {
+.container {
   background-color: var(--primary-color);
   height: 56px;
 }
 
-.headerInner {
+.inner {
   max-width: 800px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
-.headerLogo {
+.logo {
   font-size: 19px;
   letter-spacing: 0.15px;
   line-height: 56px;
   color: var(--on-primary-high-emphasis-color);
+}
+
+.icons {
+  display: flex;
+  gap: 16px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
 }
