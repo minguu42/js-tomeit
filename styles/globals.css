@@ -26,5 +26,6 @@ button {
   --on-primary-high-emphasis-color: #ffffff;
   --on-primary-medium-emphasis-color: rgba(256, 256, 256, 0.74);
   --on-surface-high-emphasis-color: rgba(0, 0, 0, 0.87);
+  --on-surface-midium-emphasis-color: rgba(0, 0, 0, 0.6);
   --border-color: #afafaf;
 }

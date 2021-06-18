@@ -5,12 +5,13 @@ import { useError } from 'lib/ErrorContext'
 import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
+import StatusBar from '../components/StatusBar'
 
-const Home = () => {
+const NotLoggedIn = () => {
   const { login } = useAuth()
-  const { error, setError } = useError()
+  const { setError } = useError()
 
-  const handleClick = async () => {
+  const handleLogin = async () => {
     setError('')
     try {
       await login()
@@ -20,6 +21,29 @@ const Home = () => {
   }
 
   return (
+    <div className={styles.notLoggedInLayout}>
+      <div>
+        <h2 className={styles.headline}>やるべきことをやる</h2>
+        <p className={styles.description}>tomeit は「今やるべきことだけを考え、行う」<br />をコンセプトにしたタスク管理アプリです。</p>
+      </div>
+      <Button text='login' handleClick={handleLogin} />
+    </div>
+  )
+}
+
+const LoggedIn = () => {
+  return (
+    <div className={styles.loggedInLayout}>
+      <StatusBar />
+    </div>
+  )
+}
+
+const Home = () => {
+  const { error } = useError()
+  const { currentUser } = useAuth()
+
+  return (
     <div>
       <Head>
         <title>tomeit</title>
@@ -27,11 +51,7 @@ const Home = () => {
       <Header />
       <main className={styles.layout}>
         {error && <p className={styles.errorMessage}>{error}</p>}
-        <div>
-          <h2 className={styles.headline}>やるべきことをやる</h2>
-          <p className={styles.description}>tomeit は「今やるべきことだけを考え、行う」<br />をコンセプトにしたタスク管理アプリです。</p>
-        </div>
-        <Button text='login' handleClick={handleClick} />
+        {currentUser ? <LoggedIn /> : <NotLoggedIn />}
       </main>
     </div>
   )
