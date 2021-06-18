@@ -1,0 +1,33 @@
+.container {
+  cursor: pointer;
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 40px;
+  left: -88px;
+
+  z-index: 4;
+
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.14), 0 3px 14px rgba(0, 0, 0, 0.12),
+    0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.item {
+  width: 112px;
+  height: 40px;
+
+  color: #b00020;
+  text-transform: uppercase;
+
+  background-color: #fafafa;
+}
+
+.item:hover {
+  background-color: #fff;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.14), 0 4px 15px rgba(0, 0, 0, 0.12),
+    0 6px 6px rgba(0, 0, 0, 0.2);
+}
