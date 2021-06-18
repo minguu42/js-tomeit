@@ -2,15 +2,16 @@ import Head from 'next/head'
 
 import { useAuth } from 'lib/AuthContext'
 import { useError } from 'lib/ErrorContext'
-import styles from 'styles/Index.module.css'
+import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
+import StatusBar from '../components/StatusBar'
 
-const Landing = () => {
+const NotLoggedIn = () => {
   const { login } = useAuth()
   const { setError } = useError()
 
-  const handleClick = async () => {
+  const handleLogin = async () => {
     setError('')
     try {
       await login()
@@ -20,22 +21,27 @@ const Landing = () => {
   }
 
   return (
-    <main className={styles.layout}>
+    <div className={styles.notLoggedInLayout}>
       <div>
         <h2 className={styles.headline}>やるべきことをやる</h2>
         <p className={styles.description}>tomeit は「今やるべきことだけを考え、行う」<br />をコンセプトにしたタスク管理アプリです。</p>
       </div>
-      <Button text='login' handleClick={handleClick} />
-    </main>
+      <Button text='login' handleClick={handleLogin} />
+    </div>
+  )
+}
+
+const LoggedIn = () => {
+  return (
+    <div className={styles.loggedInLayout}>
+      <StatusBar />
+    </div>
   )
 }
 
 const Home = () => {
-}
-
-const Index = () => {
   const { error } = useError()
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
 
   return (
     <div>
@@ -43,10 +49,12 @@ const Index = () => {
         <title>tomeit</title>
       </Head>
       <Header />
-      {error && <p className={styles.errorMessage}>{error}</p>}
-      {!currentUser && <Landing />}
+      <main className={styles.layout}>
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        {currentUser ? <LoggedIn /> : <NotLoggedIn />}
+      </main>
     </div>
   )
 }
 
-export default Index
+export default Home

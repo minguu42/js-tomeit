@@ -1,6 +1,16 @@
 .layout {
   width: 800px;
   margin: 0 auto;
+}
+
+.errorMessage {
+  border: 1px solid #b00020;
+  border-radius: 4px;
+  color: #b00020;
+  padding: 8px;
+}
+
+.notLoggedInLayout {
   padding-top: 32px;
   display: flex;
   flex-direction: column;
@@ -20,12 +30,9 @@
   letter-spacing: 0.5px;
 }
 
-.errorMessage {
-  max-width: 800px;
-  margin: 0 auto;
-
-  border: 1px solid #b00020;
-  border-radius: 4px;
-  color: #b00020;
-  padding: 8px;
+.loggedInLayout {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
