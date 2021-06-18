@@ -6,6 +6,7 @@ import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
 import StatusBar from '../components/StatusBar'
+import AddTaskForm from '../components/AddTaskForm'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -34,7 +35,12 @@ const NotLoggedIn = () => {
 const LoggedIn = () => {
   return (
     <div className={styles.loggedInLayout}>
-      <StatusBar />
+      <StatusBar
+        countToNextRest={0}
+        remainingTaskNum={0}
+        todayTaskNum={0}
+      />
+      <AddTaskForm />
     </div>
   )
 }
