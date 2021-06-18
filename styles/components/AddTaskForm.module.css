@@ -1,0 +1,29 @@
+.container {
+    height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nameInput {
+    width: 100%;
+    color: var(--on-surface-high-emphasis-color);
+}
+
+.priorityInputLayout {
+  display: flex;
+    align-items: center;
+}
+
+.priorityInput {
+    color: #666;
+    font-size: 16px;
+}
+
+.dateInput {
+    min-width: 120px;
+    letter-spacing: 0;
+}
