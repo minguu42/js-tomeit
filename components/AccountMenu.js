@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { useAuth } from 'lib/AuthContext'
+import { useError } from '../lib/ErrorContext'
 import styles from 'styles/components/AccountMenu.module.css'
 import AccountCircle from 'components/icons/AccountCircle'
 
@@ -24,14 +25,15 @@ const AccountMenuContainer = () => {
   const [isDisplay, setIsDisplay] = useState(false)
   const router = useRouter()
   const { logout } = useAuth()
+  const { setError } = useError()
 
   const handleLogout = async () => {
-    // Error の初期化
+    setError('')
     try {
       await logout()
       await router.push('/')
     } catch {
-      // Error の設定
+      setError('ログアウトに失敗しました。もう一度お試しください。')
     }
   }
 

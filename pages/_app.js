@@ -1,10 +1,13 @@
 import 'styles/globals.css'
 import AuthProvider from 'lib/AuthContext'
+import ErrorProvider from '../lib/ErrorContext'
 
 function MyApp ({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <ErrorProvider>
+        <Component {...pageProps} />
+      </ErrorProvider>
     </AuthProvider>
   )
 }
