@@ -25,8 +25,8 @@ const Home = () => {
         <title>tomeit</title>
       </Head>
       <Header />
-      {error && <p className={styles.errorMessage}>{error}</p>}
       <main className={styles.layout}>
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <div>
           <h2 className={styles.headline}>やるべきことをやる</h2>
           <p className={styles.description}>tomeit は「今やるべきことだけを考え、行う」<br />をコンセプトにしたタスク管理アプリです。</p>
