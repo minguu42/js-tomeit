@@ -21,6 +21,14 @@ button {
   cursor: pointer;
 }
 
+input {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
 :root {
   --primary-color: #192f60;
   --on-primary-high-emphasis-color: #ffffff;
