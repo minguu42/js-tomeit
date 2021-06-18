@@ -26,37 +26,3 @@
   display: flex;
   align-items: center;
 }
-
-.accountMenu {
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.menu {
-  position: absolute;
-  top: 48px;
-  left: -88px;
-
-  z-index: 4;
-  width: 112px;
-  height: 40px;
-
-  color: #b00020;
-  text-transform: uppercase;
-
-  background-color: #fafafa;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.14),
-  0 3px 14px rgba(0, 0, 0, 0.12),
-  0 5px 5px rgba(0, 0, 0, 0.2);
-}
-
-.menu:hover {
-  background-color: #fff;
-  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.14),
-  0 4px 15px rgba(0, 0, 0, 0.12),
-  0 6px 6px rgba(0, 0, 0, 0.2);
-}
