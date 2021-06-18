@@ -34,7 +34,11 @@ const NotLoggedIn = () => {
 const LoggedIn = () => {
   return (
     <div className={styles.loggedInLayout}>
-      <StatusBar />
+      <StatusBar
+        countToNextRest={0}
+        remainingTaskNum={0}
+        todayTaskNum={0}
+      />
     </div>
   )
 }
