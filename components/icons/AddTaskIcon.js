@@ -1,4 +1,4 @@
-const AddTask = ({ size, fill }) => (
+const AddTaskIcon = ({ size, fill }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     enableBackground='new 0 0 24 24'
@@ -11,4 +11,4 @@ const AddTask = ({ size, fill }) => (
   </svg>
 )
 
-export default AddTask
+export default AddTaskIcon

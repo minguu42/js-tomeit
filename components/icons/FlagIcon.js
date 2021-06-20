@@ -1,4 +1,4 @@
-const Flag = ({ size, fill }) => (
+const FlagIcon = ({ size, fill }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     height={size || 24}
@@ -10,4 +10,4 @@ const Flag = ({ size, fill }) => (
   </svg>
 )
 
-export default Flag
+export default FlagIcon

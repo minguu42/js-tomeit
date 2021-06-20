@@ -1,4 +1,4 @@
-const Summarize = ({ size, fill }) => (
+const SummarizeIcon = ({ size, fill }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     enableBackground='new 0 0 24 24'
@@ -11,4 +11,4 @@ const Summarize = ({ size, fill }) => (
   </svg>
 )
 
-export default Summarize
+export default SummarizeIcon

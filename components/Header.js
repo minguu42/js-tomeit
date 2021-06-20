@@ -1,7 +1,7 @@
 import { useAuth } from 'lib/AuthContext'
 import styles from 'styles/components/Header.module.css'
 import AccountMenu from 'components/AccountMenu'
-import Summarize from 'components/icons/Summarize'
+import SummarizeIcon from 'components/icons/SummarizeIcon'
 
 const Header = ({ currentUser }) => (
   <header className={styles.container}>
@@ -10,7 +10,7 @@ const Header = ({ currentUser }) => (
       {currentUser &&
         <div className={styles.icons}>
           <span role='button' className={styles.icon}>
-            <Summarize fill='#fff' />
+            <SummarizeIcon fill='#fff' />
           </span>
           <span className={styles.icon}>
             <AccountMenu />

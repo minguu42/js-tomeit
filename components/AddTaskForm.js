@@ -2,8 +2,8 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import styles from 'styles/components/AddTaskForm.module.css'
-import AddTask from './icons/AddTask'
-import Flag from './icons/Flag'
+import AddTaskIcon from './icons/AddTaskIcon'
+import FlagIcon from './icons/FlagIcon'
 import { useState } from 'react'
 
 const AddTaskForm = ({
@@ -16,7 +16,7 @@ const AddTaskForm = ({
   handleSubmit
 }) => (
   <form onSubmit={handleSubmit} className={styles.container}>
-    <AddTask fill='#666' />
+    <AddTaskIcon fill='#666' />
     <input
       type='text'
       title='タスク名'
@@ -26,7 +26,7 @@ const AddTaskForm = ({
       className={styles.nameInput}
     />
     <div className={styles.priorityInputLayout}>
-      <Flag fill='#666' />
+      <FlagIcon fill='#666' />
       <input
         type='number'
         title='優先度'

@@ -1,4 +1,4 @@
-const PauseCircle = ({ size, fill }) => (
+const PauseCircleIcon = ({ size, fill }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     enableBackground='new 0 0 24 24'
@@ -11,4 +11,4 @@ const PauseCircle = ({ size, fill }) => (
   </svg>
 )
 
-export default PauseCircle
+export default PauseCircleIcon

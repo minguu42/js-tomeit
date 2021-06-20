@@ -1,4 +1,4 @@
-const AccountCircle = ({ size, fill }) => (
+const AccountCircleIcon = ({ size, fill }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     height={size || 24}
@@ -10,4 +10,4 @@ const AccountCircle = ({ size, fill }) => (
   </svg>
 )
 
-export default AccountCircle
+export default AccountCircleIcon
