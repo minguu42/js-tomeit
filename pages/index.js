@@ -5,8 +5,9 @@ import { useError } from 'lib/ErrorContext'
 import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
-import StatusBar from '../components/StatusBar'
-import AddTaskForm from '../components/AddTaskForm'
+import StatusBar from 'components/StatusBar'
+import AddTaskForm from 'components/AddTaskForm'
+import TaskList from 'components/TaskList'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -41,6 +42,7 @@ const LoggedIn = () => {
         todayTaskNum={0}
       />
       <AddTaskForm />
+      <TaskList />
     </div>
   )
 }

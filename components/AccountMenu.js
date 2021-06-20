@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useAuth } from 'lib/AuthContext'
 import { useError } from '../lib/ErrorContext'
 import styles from 'styles/components/AccountMenu.module.css'
-import AccountCircle from 'components/icons/AccountCircle'
+import AccountCircleIcon from 'components/icons/AccountCircleIcon'
 
 const AccountMenu = ({ isDisplay, handleClick, handleLogout }) => (
   <div className={styles.container}>
@@ -12,7 +12,7 @@ const AccountMenu = ({ isDisplay, handleClick, handleLogout }) => (
       role='button'
       onClick={handleClick}
     >
-      <AccountCircle fill='#fff' />
+      <AccountCircleIcon fill='#fff' />
     </span>
     {isDisplay &&
       <div className={styles.menu}>

@@ -1,0 +1,69 @@
+.container {
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.borderColorGreen {
+  border-color: #006e54;
+}
+
+.borderColorYellow {
+  border-color: #c89932;
+}
+
+.borderColorRed {
+  border-color: #bb5535;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.marginTB8 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.taskName {
+  color: var(--on-surface-high-emphasis-color);
+  letter-spacing: 0.5px;
+}
+
+.nameAndIconsLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.timerIcons {
+    height: 12px;
+    position: relative;
+    margin-bottom: 4px;
+    display: flex;
+}
+
+.pomodoroCount {
+    color: var(--primary-color);
+    position: absolute;
+    top: -2px;
+    left: 12px;
+    font-size: 10px;
+    line-height: 15px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.deadline {
+  color: var(--on-surface-midium-emphasis-color);
+  letter-spacing: 0.25px;
+  font-size: 14px;
+}
