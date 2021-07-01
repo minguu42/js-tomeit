@@ -18,27 +18,25 @@ const Task = ({ taskName, primary, deadline, pomodoroCount }) => (
       {primary === 2 && <CircleIcon fill='#C89932' />}
       {primary === 3 && <CircleIcon fill='#BB5535' />}
       {pomodoroCount === 0 && <p className={cn(styles.taskName, styles.marginTB8)}>{taskName}</p>}
-      {1 <= pomodoroCount && pomodoroCount <= 5 &&
-      <div className={styles.nameAndIconsLayout}>
-        <p className={styles.taskName}>{taskName}</p>
-        <div className={styles.timerIcons}>
-          {Array.from({length: pomodoroCount}, (_, i) => i).map((num) =>
-            <TimerIcon key={num} size={12} fill='192f60' />
-          )}
-        </div>
-      </div>
-      }
-      {6 <= pomodoroCount &&
-      <div>
+      {pomodoroCount >= 1 && pomodoroCount <= 5 &&
         <div className={styles.nameAndIconsLayout}>
           <p className={styles.taskName}>{taskName}</p>
           <div className={styles.timerIcons}>
-            <TimerIcon size={12} fill='192f60' />
-            <p className={styles.pomodoroCount}>{pomodoroCount}</p>
+            {Array.from({ length: pomodoroCount }, (_, i) => i).map((num) =>
+              <TimerIcon key={num} size={12} fill='192f60' />
+            )}
           </div>
-        </div>
-      </div>
-      }
+        </div>}
+      {pomodoroCount >= 6 &&
+        <div>
+          <div className={styles.nameAndIconsLayout}>
+            <p className={styles.taskName}>{taskName}</p>
+            <div className={styles.timerIcons}>
+              <TimerIcon size={12} fill='192f60' />
+              <p className={styles.pomodoroCount}>{pomodoroCount}</p>
+            </div>
+          </div>
+        </div>}
     </div>
     <div className={styles.right}>
       <p className={styles.deadline}>{deadline}</p>
