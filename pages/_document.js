@@ -5,6 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name='robots' content='noindex,nofollow' />
           <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
           <link
             href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap'

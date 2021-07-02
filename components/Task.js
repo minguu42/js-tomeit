@@ -4,19 +4,23 @@ import styles from 'styles/components/Task.module.css'
 import CircleIcon from './icons/CircleIcon'
 import PlayCircle from './icons/PlayCircleIcon'
 import TimerIcon from './icons/TimerIcon'
+import { fmtDate } from '../lib/utils'
 
-const Task = ({ taskName, primary, deadline, pomodoroCount }) => (
+const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => (
   <div className={cn(styles.container, {
-    [styles.borderColorGreen]: primary === 1,
-    [styles.borderColorYellow]: primary === 2,
-    [styles.borderColorRed]: primary === 3
+    [styles.borderColorGreen]: priority === 1,
+    [styles.borderColorYellow]: priority === 2,
+    [styles.borderColorRed]: priority === 3
   })}
   >
     <div className={styles.left}>
-      {primary === 0 && <CircleIcon fill='#666666' />}
-      {primary === 1 && <CircleIcon fill='#006e54' />}
-      {primary === 2 && <CircleIcon fill='#C89932' />}
-      {primary === 3 && <CircleIcon fill='#BB5535' />}
+      <button onClick={() => doneTask(id)} className={styles.doneButton}>
+        {priority === 0 && <CircleIcon fill='#666666' />}
+        {priority === 1 && <CircleIcon fill='#006e54' />}
+        {priority === 2 && <CircleIcon fill='#C89932' />}
+        {priority === 3 && <CircleIcon fill='#BB5535' />}
+      </button>
+
       {pomodoroCount === 0 && <p className={cn(styles.taskName, styles.marginTB8)}>{taskName}</p>}
       {pomodoroCount >= 1 && pomodoroCount <= 5 &&
         <div className={styles.nameAndIconsLayout}>
@@ -39,7 +43,7 @@ const Task = ({ taskName, primary, deadline, pomodoroCount }) => (
         </div>}
     </div>
     <div className={styles.right}>
-      <p className={styles.deadline}>{deadline}</p>
+      {deadline !== '0001-01-01' && <p className={styles.deadline}>{fmtDate(deadline)}</p>}
       <PlayCircle />
     </div>
   </div>
