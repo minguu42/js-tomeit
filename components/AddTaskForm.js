@@ -2,9 +2,11 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import styles from 'styles/components/AddTaskForm.module.css'
-import AddTaskIcon from './icons/AddTaskIcon'
-import FlagIcon from './icons/FlagIcon'
+import AddTaskIcon from 'components/icons/AddTaskIcon'
+import FlagIcon from 'components/icons/FlagIcon'
 import { useState } from 'react'
+import { postData } from 'lib/fetch'
+import { useAuth } from 'lib/AuthContext'
 
 const AddTaskForm = ({
   name,
@@ -48,10 +50,11 @@ const AddTaskForm = ({
   </form>
 )
 
-const AddTaskFormContainer = () => {
+const AddTaskFormContainer = ({ addTask }) => {
   const [name, setName] = useState('')
   const [priority, setPriority] = useState(0)
   const [deadline, setDeadline] = useState(null)
+  const { currentUser } = useAuth()
 
   const handleNameChange = (e) => {
     setName(e.target.value)
@@ -63,7 +66,21 @@ const AddTaskFormContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    window.alert('name: ' + name + ', priority: ' + priority + ', date: ' + (deadline && deadline.toISOString()))
+
+    const task = { name: name, priority: Number(priority) }
+
+    if (deadline === null) {
+      const tmpDeadline = new Date('0001-01-02T00:00:00')
+      setDeadline(tmpDeadline)
+      task.deadline = tmpDeadline.toISOString().slice(0, 10)
+    } else {
+      task.deadline = deadline.toISOString().slice(0, 10)
+    }
+
+    postData('/tasks', task, currentUser).then((data) => {
+      addTask(data)
+    })
+
     setName('')
     setPriority(0)
     setDeadline(null)
