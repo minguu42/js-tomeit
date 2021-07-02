@@ -6,7 +6,7 @@ import PlayCircle from './icons/PlayCircleIcon'
 import TimerIcon from './icons/TimerIcon'
 import { fmtDate } from '../lib/utils'
 
-const Task = ({ taskName, priority, deadline, pomodoroCount }) => (
+const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => (
   <div className={cn(styles.container, {
     [styles.borderColorGreen]: priority === 1,
     [styles.borderColorYellow]: priority === 2,
@@ -14,10 +14,13 @@ const Task = ({ taskName, priority, deadline, pomodoroCount }) => (
   })}
   >
     <div className={styles.left}>
-      {priority === 0 && <CircleIcon fill='#666666' />}
-      {priority === 1 && <CircleIcon fill='#006e54' />}
-      {priority === 2 && <CircleIcon fill='#C89932' />}
-      {priority === 3 && <CircleIcon fill='#BB5535' />}
+      <button onClick={() => doneTask(id)} className={styles.doneButton}>
+        {priority === 0 && <CircleIcon fill='#666666' />}
+        {priority === 1 && <CircleIcon fill='#006e54' />}
+        {priority === 2 && <CircleIcon fill='#C89932' />}
+        {priority === 3 && <CircleIcon fill='#BB5535' />}
+      </button>
+
       {pomodoroCount === 0 && <p className={cn(styles.taskName, styles.marginTB8)}>{taskName}</p>}
       {pomodoroCount >= 1 && pomodoroCount <= 5 &&
         <div className={styles.nameAndIconsLayout}>

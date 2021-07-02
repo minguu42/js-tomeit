@@ -9,7 +9,7 @@ import StatusBar from 'components/StatusBar'
 import AddTaskForm from 'components/AddTaskForm'
 import TaskList from 'components/TaskList'
 import { useEffect, useState } from 'react'
-import { fetchData } from '../lib/fetch'
+import { fetchData, putData } from '../lib/fetch'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -56,6 +56,13 @@ const LoggedIn = () => {
     setTasks(tmp)
   }
 
+  const doneTask = (taskID) => {
+    putData('/tasks/done/' + String(taskID), null, currentUser).then((data) => console.log(data))
+
+    const tmp = tasks.filter((t) => t.id !== taskID)
+    setTasks(tmp)
+  }
+
   return (
     <div className={styles.loggedInLayout}>
       <StatusBar
@@ -64,7 +71,7 @@ const LoggedIn = () => {
         todayTaskNum={0}
       />
       <AddTaskForm addTask={addTask} />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} doneTask={doneTask} />
     </div>
   )
 }
