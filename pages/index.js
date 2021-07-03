@@ -3,13 +3,14 @@ import Head from 'next/head'
 
 import { useAuth } from 'lib/AuthContext'
 import { useError } from 'lib/ErrorContext'
-import { fetchData, putData } from 'lib/fetch'
+import { fetchData, postData, putData } from 'lib/fetch'
 import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
 import StatusBar from 'components/StatusBar'
 import AddTaskForm from 'components/AddTaskForm'
 import TaskList from 'components/TaskList'
+import { error } from 'next/dist/build/output/log'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -59,15 +60,18 @@ const LoggedIn = () => {
   }
 
   const completeTask = (taskID) => {
-    putData('/tasks/done/' + String(taskID), null, currentUser).then((data) => console.log(data))
+    putData('/tasks/done/' + String(taskID), null, currentUser).catch((err) => console.log(err))
 
     const tmp = tasks.filter((t) => t.id !== taskID)
     setTasks(tmp)
   }
 
   const completePomodoro = (taskID) => {
+    const data = {"taskID": taskID}
+    postData('/pomodoros/logs', data, currentUser).catch((err) => console.log(err))
+
     setPomodoroCount((pomodoroCount) => pomodoroCount + 1)
-    setCountToNextRest((countToNextRest) => countToNextRest - 1)
+    setCountToNextRest((countToNextRest) => countToNextRest === 1 ? 4 : countToNextRest - 1)
 
     const tmp = tasks.slice()
     const index = tasks.findIndex(task => task.id === taskID)
