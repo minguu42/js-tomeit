@@ -1,0 +1,11 @@
+.heading {
+  font-size: 19px;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+.logList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

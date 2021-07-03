@@ -1,15 +1,15 @@
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-import { useAuth } from 'lib/AuthContext'
-import { useError } from 'lib/ErrorContext'
-import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
 import StatusBar from 'components/StatusBar'
 import AddTaskForm from 'components/AddTaskForm'
 import TaskList from 'components/TaskList'
-import { useEffect, useState } from 'react'
-import { fetchData, putData } from '../lib/fetch'
+import styles from 'styles/Home.module.css'
+import { useAuth } from 'lib/AuthContext'
+import { useError } from 'lib/ErrorContext'
+import { fetchData, putData } from 'lib/fetch'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -45,7 +45,6 @@ const LoggedIn = () => {
         setTasks([])
       } else {
         setTasks(data.tasks)
-        console.log(data.tasks)
       }
     })
   }, [])

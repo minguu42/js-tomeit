@@ -4,7 +4,7 @@ import styles from 'styles/components/Task.module.css'
 import CircleIcon from './icons/CircleIcon'
 import PlayCircle from './icons/PlayCircleIcon'
 import TimerIcon from './icons/TimerIcon'
-import { fmtDate } from '../lib/utils'
+import { fmtDatetimeForDate } from '../lib/utils'
 
 const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => (
   <div className={cn(styles.container, {
@@ -27,7 +27,7 @@ const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => 
           <p className={styles.taskName}>{taskName}</p>
           <div className={styles.timerIcons}>
             {Array.from({ length: pomodoroCount }, (_, i) => i).map((num) =>
-              <TimerIcon key={num} size={12} fill='192f60' />
+              <TimerIcon key={num} size={12} fill='#192f60' />
             )}
           </div>
         </div>}
@@ -36,14 +36,14 @@ const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => 
           <div className={styles.nameAndIconsLayout}>
             <p className={styles.taskName}>{taskName}</p>
             <div className={styles.timerIcons}>
-              <TimerIcon size={12} fill='192f60' />
+              <TimerIcon size={12} fill='#192f60' />
               <p className={styles.pomodoroCount}>{pomodoroCount}</p>
             </div>
           </div>
         </div>}
     </div>
     <div className={styles.right}>
-      {deadline !== '0001-01-01' && <p className={styles.deadline}>{fmtDate(deadline)}</p>}
+      {deadline !== '0001-01-01' && <p className={styles.deadline}>{fmtDatetimeForDate(deadline)}</p>}
       <PlayCircle />
     </div>
   </div>

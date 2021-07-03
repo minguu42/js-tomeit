@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { useAuth } from 'lib/AuthContext'
 import styles from 'styles/components/Header.module.css'
 import AccountMenu from 'components/AccountMenu'
@@ -9,10 +11,10 @@ const Header = ({ currentUser }) => (
       <h6 className={styles.logo}>tomeit</h6>
       {currentUser &&
         <div className={styles.icons}>
+          <Link href='/history'>
+            <a className={styles.icon}><SummarizeIcon fill='#fff' /></a>
+          </Link>
           <span role='button' className={styles.icon}>
-            <SummarizeIcon fill='#fff' />
-          </span>
-          <span className={styles.icon}>
             <AccountMenu />
           </span>
         </div>}
