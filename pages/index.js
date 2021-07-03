@@ -1,15 +1,15 @@
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
 import { useAuth } from 'lib/AuthContext'
 import { useError } from 'lib/ErrorContext'
+import { fetchData, putData } from 'lib/fetch'
 import styles from 'styles/Home.module.css'
 import Header from 'components/Header'
 import Button from 'components/Buttons'
 import StatusBar from 'components/StatusBar'
 import AddTaskForm from 'components/AddTaskForm'
 import TaskList from 'components/TaskList'
-import { useEffect, useState } from 'react'
-import { fetchData, putData } from '../lib/fetch'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -37,6 +37,8 @@ const NotLoggedIn = () => {
 
 const LoggedIn = () => {
   const [tasks, setTasks] = useState([])
+  const [pomodoroCount, setPomodoroCount] = useState(0)
+  const [countToNextRest, setCountToNextRest] = useState(4)
   const { currentUser } = useAuth()
 
   useEffect(() => {
@@ -56,22 +58,34 @@ const LoggedIn = () => {
     setTasks(tmp)
   }
 
-  const doneTask = (taskID) => {
+  const completeTask = (taskID) => {
     putData('/tasks/done/' + String(taskID), null, currentUser).then((data) => console.log(data))
 
     const tmp = tasks.filter((t) => t.id !== taskID)
     setTasks(tmp)
   }
 
+  const completePomodoro = (taskID) => {
+    setPomodoroCount((pomodoroCount) => pomodoroCount + 1)
+    setCountToNextRest((countToNextRest) => countToNextRest - 1)
+
+    const tmp = tasks.slice()
+    const index = tasks.findIndex(task => task.id === taskID)
+    const task = tasks[index]
+    task.pomodoroCount += 1
+    tmp[index] = task
+    setTasks(tmp)
+  }
+
   return (
     <div className={styles.loggedInLayout}>
       <StatusBar
-        countToNextRest={0}
-        remainingTaskNum={0}
-        todayTaskNum={0}
+        countToNextRest={countToNextRest}
+        remainingTaskNum={tasks.filter((task) => task.isDone === false).length}
+        todayPomodoroNum={pomodoroCount}
       />
       <AddTaskForm addTask={addTask} />
-      <TaskList tasks={tasks} doneTask={doneTask} />
+      <TaskList tasks={tasks} completeTask={completeTask} completePomodoro={completePomodoro} />
     </div>
   )
 }
