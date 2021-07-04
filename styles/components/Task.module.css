@@ -18,10 +18,14 @@
   border-color: #bb5535;
 }
 
-.left {
+.leftContainer {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.timerWrapper {
+  display: flex;
 }
 
 .doneButton {
@@ -33,7 +37,7 @@
   margin-bottom: 8px;
 }
 
-.taskName {
+.name {
   color: var(--on-surface-high-emphasis-color);
   letter-spacing: 0.5px;
 }
@@ -60,7 +64,7 @@
   line-height: 15px;
 }
 
-.right {
+.rightContainer {
   display: flex;
   align-items: center;
   gap: 48px;

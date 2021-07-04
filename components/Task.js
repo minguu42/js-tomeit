@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import cn from 'classnames'
 
 import styles from 'styles/components/Task.module.css'
@@ -6,25 +7,41 @@ import PlayCircle from './icons/PlayCircleIcon'
 import TimerIcon from './icons/TimerIcon'
 import { fmtDatetimeForDate } from '../lib/utils'
 
-const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => (
+const Task = ({
+  id,
+  name,
+  priority,
+  deadline,
+  pomodoroCount,
+  pomodoroTime,
+  isPlayingPomodoro,
+  handleCircleClick,
+  handlePlayClick
+}) => (
   <div className={cn(styles.container, {
     [styles.borderColorGreen]: priority === 1,
     [styles.borderColorYellow]: priority === 2,
     [styles.borderColorRed]: priority === 3
   })}
   >
-    <div className={styles.left}>
-      <button onClick={() => doneTask(id)} className={styles.doneButton}>
-        {priority === 0 && <CircleIcon fill='#666666' />}
-        {priority === 1 && <CircleIcon fill='#006e54' />}
-        {priority === 2 && <CircleIcon fill='#C89932' />}
-        {priority === 3 && <CircleIcon fill='#BB5535' />}
-      </button>
+    <div className={styles.leftContainer}>
+      {isPlayingPomodoro &&
+        <div className={styles.timerWrapper}>
+          <TimerIcon fill='192f60' />
+          <p>{convertSecondsIntoMinutes(pomodoroTime)}</p>
+        </div>}
+      {!isPlayingPomodoro &&
+        <button onClick={() => handleCircleClick(id)} className={styles.doneButton}>
+          {priority === 0 && <CircleIcon fill='#666666' />}
+          {priority === 1 && <CircleIcon fill='#006e54' />}
+          {priority === 2 && <CircleIcon fill='#C89932' />}
+          {priority === 3 && <CircleIcon fill='#BB5535' />}
+        </button>}
 
-      {pomodoroCount === 0 && <p className={cn(styles.taskName, styles.marginTB8)}>{taskName}</p>}
+      {pomodoroCount === 0 && <p className={cn(styles.name, styles.marginTB8)}>{name}</p>}
       {pomodoroCount >= 1 && pomodoroCount <= 5 &&
         <div className={styles.nameAndIconsLayout}>
-          <p className={styles.taskName}>{taskName}</p>
+          <p className={styles.name}>{name}</p>
           <div className={styles.timerIcons}>
             {Array.from({ length: pomodoroCount }, (_, i) => i).map((num) =>
               <TimerIcon key={num} size={12} fill='#192f60' />
@@ -34,7 +51,7 @@ const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => 
       {pomodoroCount >= 6 &&
         <div>
           <div className={styles.nameAndIconsLayout}>
-            <p className={styles.taskName}>{taskName}</p>
+            <p className={styles.name}>{name}</p>
             <div className={styles.timerIcons}>
               <TimerIcon size={12} fill='#192f60' />
               <p className={styles.pomodoroCount}>{pomodoroCount}</p>
@@ -49,4 +66,57 @@ const Task = ({ id, taskName, priority, deadline, pomodoroCount, doneTask }) => 
   </div>
 )
 
-export default Task
+const TaskContainer = ({
+  id,
+  name,
+  priority,
+  deadline,
+  pomodoroCount,
+  completeTask,
+  completePomodoro
+}) => {
+  const [isPlayingPomodoro, setIsPlayingPomodoro] = useState(false)
+  const [pomodoroTime, setPomodoroTime] = useState(25)
+  const [timerID, setTimerID] = useState(0)
+
+  const tick = () => {
+    setPomodoroTime((pomodoroTime) => pomodoroTime - 1)
+  }
+
+  const handleCircleClick = (id) => {
+    completeTask(id)
+  }
+
+  const handlePlayClick = (id) => {
+    setIsPlayingPomodoro(true)
+
+    const timerID = setInterval(() => tick(), 1000)
+    setTimerID(timerID)
+  }
+
+  useEffect(() => {
+    if (pomodoroTime === 0) {
+      completePomodoro(id)
+
+      setIsPlayingPomodoro(false)
+      setPomodoroTime(25)
+      clearInterval(timerID)
+    }
+  }, [pomodoroTime])
+
+  return (
+    <Task
+      id={id}
+      name={name}
+      priority={priority}
+      deadline={deadline}
+      pomodoroCount={pomodoroCount}
+      pomodoroTime={pomodoroTime}
+      isPlayingPomodoro={isPlayingPomodoro}
+      handleCircleClick={handleCircleClick}
+      handlePlayClick={handlePlayClick}
+    />
+  )
+}
+
+export default TaskContainer
