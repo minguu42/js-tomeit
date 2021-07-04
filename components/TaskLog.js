@@ -1,7 +1,7 @@
 import styles from 'styles/components/TaskLog.module.css'
 import TimerIcon from './icons/TimerIcon'
 
-const TaskLog = ({pomodoroCount, name, doneAt}) => (
+const TaskLog = ({ pomodoroCount, name, doneAt }) => (
   <div className={styles.container}>
     <div className={styles.leftWrapper}>
       <div className={styles.pomodoroCountDisplay}>
