@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react'
 import cn from 'classnames'
 
 import styles from 'styles/components/Task.module.css'
-import CircleIcon from './icons/CircleIcon'
-import PlayCircle from './icons/PlayCircleIcon'
-import TimerIcon from './icons/TimerIcon'
-import { fmtDatetimeForDate } from '../lib/utils'
+import CircleIcon from 'components/icons/CircleIcon'
+import PlayCircle from 'components/icons/PlayCircleIcon'
+import TimerIcon from 'components/icons/TimerIcon'
+import { convertSecondsIntoMinutes, fmtDatetimeForDate } from 'lib/utils'
 
 const Task = ({
   id,
@@ -59,9 +59,9 @@ const Task = ({
           </div>
         </div>}
     </div>
-    <div className={styles.right}>
+    <div className={styles.rightContainer}>
       {deadline !== '0001-01-01' && <p className={styles.deadline}>{fmtDatetimeForDate(deadline)}</p>}
-      <PlayCircle />
+      <button onClick={handlePlayClick}><PlayCircle /></button>
     </div>
   </div>
 )
@@ -87,7 +87,7 @@ const TaskContainer = ({
     completeTask(id)
   }
 
-  const handlePlayClick = (id) => {
+  const handlePlayClick = () => {
     setIsPlayingPomodoro(true)
 
     const timerID = setInterval(() => tick(), 1000)
