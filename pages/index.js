@@ -5,12 +5,12 @@ import { useAuth } from 'lib/AuthContext'
 import { useError } from 'lib/ErrorContext'
 import { fetchData, postData, putData } from 'lib/fetch'
 import styles from 'styles/Home.module.css'
+
 import Header from 'components/Header'
 import Button from 'components/Buttons'
 import StatusBar from 'components/StatusBar'
 import AddTaskForm from 'components/AddTaskForm'
 import TaskList from 'components/TaskList'
-import { error } from 'next/dist/build/output/log'
 
 const NotLoggedIn = () => {
   const { login } = useAuth()
@@ -48,7 +48,6 @@ const LoggedIn = () => {
         setTasks([])
       } else {
         setTasks(data.tasks)
-        console.log(data.tasks)
       }
     })
   }, [])

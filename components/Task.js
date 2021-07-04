@@ -1,11 +1,11 @@
+import {useState, useEffect} from 'react'
 import cn from 'classnames'
 
 import styles from 'styles/components/Task.module.css'
 import CircleIcon from './icons/CircleIcon'
 import PlayCircle from './icons/PlayCircleIcon'
 import TimerIcon from './icons/TimerIcon'
-import { convertSecondsIntoMinutes, fmtDate } from '../lib/utils'
-import { useEffect, useState } from 'react'
+import { fmtDatetimeForDate } from '../lib/utils'
 
 const Task = ({
   id,
@@ -44,7 +44,7 @@ const Task = ({
           <p className={styles.name}>{name}</p>
           <div className={styles.timerIcons}>
             {Array.from({ length: pomodoroCount }, (_, i) => i).map((num) =>
-              <TimerIcon key={num} size={12} fill='192f60' />
+              <TimerIcon key={num} size={12} fill='#192f60' />
             )}
           </div>
         </div>}
@@ -53,16 +53,15 @@ const Task = ({
           <div className={styles.nameAndIconsLayout}>
             <p className={styles.name}>{name}</p>
             <div className={styles.timerIcons}>
-              <TimerIcon size={12} fill='192f60' />
+              <TimerIcon size={12} fill='#192f60' />
               <p className={styles.pomodoroCount}>{pomodoroCount}</p>
             </div>
           </div>
         </div>}
     </div>
-
-    <div className={styles.rightContainer}>
-      {deadline !== '0001-01-01' && <p className={styles.deadline}>{fmtDate(deadline)}</p>}
-      <button onClick={handlePlayClick}><PlayCircle /></button>
+    <div className={styles.right}>
+      {deadline !== '0001-01-01' && <p className={styles.deadline}>{fmtDatetimeForDate(deadline)}</p>}
+      <PlayCircle />
     </div>
   </div>
 )
